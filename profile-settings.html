@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengaturan Profil - SIM-KIP</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h3>SIM - KIP</h3>
+        <a href="index.html">Dashboard</a>
+        <a href="rekapitulasi.html">Rekapitulasi</a>
+        <a href="data-mahasiswa.html">Data Mahasiswa</a>
+        <a href="keuangan.html">Keuangan</a>
+        <a href="login.html">Logout</a>
+    </div>
+
+    <main class="main-content">
+        <div class="header-main">
+            <div class="header-left">
+                <span class="admin-label">admin</span>
+            </div>
+            <div class="header-right">
+                <div class="header-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="user-profile-toggle" id="userProfileToggle">
+                    <img src="https://via.placeholder.com/35" alt="Avatar" class="user-avatar">
+                    <span class="username">Alparijiii</span>
+                    <i class="fas fa-caret-down caret-icon"></i>
+                </div>
+                <div id="profileDropdown" class="profile-dropdown">
+                    <a href="profile-settings.html">Pengaturan Profil</a>
+                    <a href="help.html">Bantuan</a>
+                    <a href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h2>Pengaturan Profil</h2>
+            <p>Kelola informasi akun Anda.</p>
+        </div>
+
+        <div class="profile-settings-container">
+            <div class="profile-card">
+                <h3>Informasi Umum</h3>
+                <div class="profile-avatar-upload">
+                    <img src="https://via.placeholder.com/100" alt="Avatar Pengguna" id="profileAvatarPreview" class="profile-avatar-lg">
+                    <label for="avatarUpload" class="button-small">
+                        <i class="fas fa-camera"></i> Ubah Foto
+                        <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                    </label>
+                </div>
+                <form id="profileInfoForm" class="profile-form">
+                    <div class="form-group-profile">
+                        <label for="fullName">Nama Lengkap</label>
+                        <input type="text" id="fullName" value="Alparijiii" readonly>
+                    </div>
+                    <div class="form-group-profile">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" value="alparijiii_admin" readonly>
+                    </div>
+                    <div class="form-group-profile">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" value="admin@simkip.com" readonly>
+                    </div>
+                    <div class="form-group-profile">
+                        <label for="role">Peran</label>
+                        <input type="text" id="role" value="Administrator" readonly>
+                    </div>
+                    <button type="button" id="editProfileButton" class="button-primary">Edit Profil</button>
+                    <div class="edit-actions" style="display: none;">
+                        <button type="submit" class="button-primary">Simpan Perubahan</button>
+                        <button type="button" id="cancelEditButton" class="button-secondary">Batal</button>
+                    </div>
+                    <div class="message" id="profileMessage"></div>
+                </form>
+            </div>
+
+            <div class="profile-card">
+                <h3>Ubah Password</h3>
+                <form id="changePasswordForm" class="profile-form">
+                    <div class="form-group-profile">
+                        <label for="currentPassword">Password Saat Ini</label>
+                        <input type="password" id="currentPassword" required>
+                    </div>
+                    <div class="form-group-profile">
+                        <label for="newPassword">Password Baru</label>
+                        <input type="password" id="newPassword" required>
+                    </div>
+                    <div class="form-group-profile">
+                        <label for="confirmNewPassword">Konfirmasi Password Baru</label>
+                        <input type="password" id="confirmNewPassword" required>
+                    </div>
+                    <button type="submit" class="button-primary">Ubah Password</button>
+                    <div class="message" id="passwordMessage"></div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

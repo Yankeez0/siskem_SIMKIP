@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajukan Perubahan Data - SIM-KIP</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="sidebar" id="mahasiswaSidebar">
+        <h3>SIM - KIP</h3>
+        <a href="dashboard-mahasiswa.html">Dashboard Saya</a>
+        <a href="ajukan-perubahan-data.html" class="active">Ajukan Perubahan Data</a>
+        <a href="profile-settings-mahasiswa.html">Pengaturan Profil</a>
+        <a href="login.html" id="mahasiswaLogout">Logout</a>
+    </div>
+
+    <main class="main-content">
+        <div class="header-main">
+            <div class="header-left">
+                <span class="user-role-label">Mahasiswa</span>
+            </div>
+            <div class="header-right">
+                <div class="header-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="user-profile-toggle" id="userProfileToggle">
+                    <img src="https://via.placeholder.com/35" alt="User Avatar" />
+                    <span id="loggedInUserName">Pengguna</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-menu" id="userProfileDropdown">
+                    <a href="profile-settings-mahasiswa.html" id="profileSettingsLinkDropdown">Pengaturan Profil</a>
+                    <a href="help.html">Bantuan</a>
+                    <a href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h2>Ajukan Perubahan Data</h2>
+            <p>Formulir ini digunakan untuk mengajukan perubahan data pribadi Anda kepada administrator.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="profile-card">
+                <h3>Formulir Perubahan Data</h3>
+                <form id="requestDataChangeForm" class="profile-form">
+                    <div class="form-group-profile">
+                        <label for="currentNIM">NIM (Tidak Dapat Diubah)</label>
+                        <input type="text" id="currentNIM" value="12345678" readonly>
+                    </div>
+                    <div class="form-group-profile">
+                        <label for="currentNama">Nama Lengkap (Saat Ini)</label>
+                        <input type="text" id="currentNama" value="Budi Santoso" readonly>
+                    </div>
+
+                    <h4>Data yang Diajukan untuk Perubahan</h4>
+                    <div class="form-group-profile">
+                        <label for="requestNama">Nama Lengkap Baru</label>
+                        <input type="text" id="requestNama" placeholder="Masukkan nama lengkap baru (jika ada)">
+                    </div>
+                    <div class="form-group-profile">
+                        <label for="requestJenisKelamin">Jenis Kelamin Baru</label>
+                        <select id="requestJenisKelamin">
+                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="form-group-profile">
+                        <label for="requestTempatTglLahir">Tempat, Tanggal Lahir Baru</label>
+                        <input type="text" id="requestTempatTglLahir" placeholder="Contoh: Jakarta, 01-01-2000">
+                    </div>
+                    <div class="form-group-profile">
+                        <label for="requestAgama">Agama Baru</label>
+                        <input type="text" id="requestAgama" placeholder="Masukkan agama baru">
+                    </div>
+                    <div class="form-group-profile">
+                        <label for="requestNamaIbu">Nama Ibu Kandung Baru</label>
+                        <input type="text" id="requestNamaIbu" placeholder="Masukkan nama ibu kandung baru">
+                    </div>
+                    <div class="form-group-profile">
+                        <label for="requestNoHpOrtu">No. HP Orang Tua Baru</label>
+                        <input type="text" id="requestNoHpOrtu" placeholder="Masukkan nomor HP orang tua baru">
+                    </div>
+                    <div class="form-group-profile">
+                        <label for="requestEmailOrtu">Email Orang Tua Baru</label>
+                        <input type="email" id="requestEmailOrtu" placeholder="Masukkan email orang tua baru">
+                    </div>
+
+                    <div class="form-group-profile">
+                        <label for="alasanPerubahan">Alasan Perubahan</label>
+                        <textarea id="alasanPerubahan" rows="4"
+                            placeholder="Jelaskan mengapa Anda mengajukan perubahan data ini (misal: kesalahan data, perubahan status, dll.)"
+                            required></textarea>
+                    </div>
+
+                    <button type="submit" class="button-primary">Ajukan Perubahan</button>
+                    <div class="message" id="changeRequestMessage"></div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Panggil fungsi checkUserRole untuk memastikan hanya mahasiswa yang bisa mengakses halaman ini
+            checkUserRole(['mahasiswa']);
+
+            // Fungsi untuk mengisi data saat ini
+            function loadCurrentUserData() {
+                const loggedInUserNIM = localStorage.getItem('loggedInUserNIM');
+                const mahasiswaData = JSON.parse(localStorage.getItem('mahasiswaData')) || [];
+                const currentUser = mahasiswaData.find(m => m.nim === loggedInUserNIM);
+
+                if (currentUser) {
+                    document.getElementById('currentNIM').value = currentUser.nim;
+                    document.getElementById('currentNama').value = currentUser.nama;
+                } else {
+                    // Handle case where user data is not found (e.g., redirect or show error)
+                    console.error('Data mahasiswa tidak ditemukan.');
+                    // Optionally redirect to dashboard or login
+                    // window.location.href = 'dashboard-mahasiswa.html';
+                }
+            }
+
+            loadCurrentUserData();
+
+            const requestDataChangeForm = document.getElementById('requestDataChangeForm');
+            const changeRequestMessage = document.getElementById('changeRequestMessage');
+
+            requestDataChangeForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const nim = document.getElementById('currentNIM').value;
+                const requestNama = document.getElementById('requestNama').value;
+                const requestJenisKelamin = document.getElementById('requestJenisKelamin').value;
+                const requestTempatTglLahir = document.getElementById('requestTempatTglLahir').value;
+                const requestAgama = document.getElementById('requestAgama').value;
+                const requestNamaIbu = document.getElementById('requestNamaIbu').value;
+                const requestNoHpOrtu = document.getElementById('requestNoHpOrtu').value;
+                const requestEmailOrtu = document.getElementById('requestEmailOrtu').value;
+                const alasanPerubahan = document.getElementById('alasanPerubahan').value;
+
+                // Simple validation: ensure at least one field is filled for change, and reason is provided
+                if (!requestNama && !requestJenisKelamin && !requestTempatTglLahir && !requestAgama &&
+                    !requestNamaIbu && !requestNoHpOrtu && !requestEmailOrtu) {
+                    changeRequestMessage.textContent = 'Mohon isi setidaknya satu kolom perubahan data.';
+                    changeRequestMessage.style.color = 'red';
+                    return;
+                }
+
+                if (!alasanPerubahan.trim()) {
+                    changeRequestMessage.textContent = 'Alasan perubahan harus diisi.';
+                    changeRequestMessage.style.color = 'red';
+                    return;
+                }
+
+                // Simulate sending data to an admin for review
+                // In a real application, this would involve sending data to a backend server.
+                const changeRequest = {
+                    nim: nim,
+                    requestedChanges: {
+                        ...(requestNama && { nama: requestNama }),
+                        ...(requestJenisKelamin && { jenis_kelamin: requestJenisKelamin }),
+                        ...(requestTempatTglLahir && { tempat_tgl_lahir: requestTempatTglLahir }),
+                        ...(requestAgama && { agama: requestAgama }),
+                        ...(requestNamaIbu && { nama_ibu: requestNamaIbu }),
+                        ...(requestNoHpOrtu && { no_hp_ortu: requestNoHpOrtu }),
+                        ...(requestEmailOrtu && { email_ortu: requestEmailOrtu })
+                    },
+                    alasan: alasanPerubahan,
+                    tanggalPengajuan: new Date().toLocaleDateString('id-ID'),
+                    status: 'Pending' // Initial status
+                };
+
+                // Store the request in localStorage (simulating a database)
+                // In a real app, this would be saved in a database and accessible by admins.
+                let pendingChangeRequests = JSON.parse(localStorage.getItem('pendingChangeRequests')) || [];
+                pendingChangeRequests.push(changeRequest);
+                localStorage.setItem('pendingChangeRequests', JSON.stringify(pendingChangeRequests));
+
+                changeRequestMessage.textContent = 'Pengajuan perubahan data Anda telah berhasil dikirim dan akan ditinjau oleh administrator.';
+                changeRequestMessage.style.color = 'green';
+                requestDataChangeForm.reset();
+                loadCurrentUserData(); // Reload current data (which won't change until approved by admin)
+            });
+        });
+    </script>
+</body>
+
+</html>

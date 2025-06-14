@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keuangan - Admin SIM-KIP</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h3>SIM - KIP</h3>
+        <a href="index.html">Dashboard</a>
+        <a href="rekapitulasi.html">Rekapitulasi</a>
+        <a href="data-mahasiswa.html">Data Mahasiswa</a>
+        <a href="keuangan.html" class="active">Keuangan</a>
+        <a href="login.html">Logout</a>
+    </div>
+
+    <main class="main-content">
+        <div class="header-main">
+            <div class="header-left">
+                <span class="admin-label">admin</span>
+            </div>
+            <div class="header-right">
+                <div class="header-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="user-profile-toggle" id="userProfileToggle">
+                    <img src="https://via.placeholder.com/35" alt="Avatar" class="user-avatar">
+                    <span class="username">Alparijii</span>
+                    <i class="fas fa-caret-down caret-icon"></i>
+                </div>
+                <div id="profileDropdown" class="profile-dropdown">
+                    <a href="profile-settings.html">Pengaturan Profil</a>
+                    <a href="help.html">Bantuan</a>
+                    <a href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h2>Manajemen Keuangan</h2>
+            <p>Kelola pemasukan dan pengeluaran.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>Dana Anggaran</h3>
+                <p class="card-value">Rp 150.000.000</p>
+                <i class="fas fa-money-bill-wave card-icon"></i>
+            </div>
+            <div class="card">
+                <h3>Total Pembayaran</h3>
+                <p class="card-value">Rp 25.000.000</p>
+                <i class="fas fa-hand-holding-dollar card-icon"></i>
+            </div>
+            <div class="card">
+                <h3>Pending</h3>
+                <p class="card-value">5</p>
+                <i class="fas fa-calendar-times card-icon"></i>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>Daftar Transaksi Terbaru</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Transaksi</th>
+                            <th>Deskripsi</th>
+                            <th>Jumlah</th>
+                            <th>Jenis</th>
+                            <th>Tanggal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TRX001</td>
+                            <td>KIP</td>
+                            <td>Rp 5.000.000 </td>
+                            <td class="type-outflow">Pengeluaran</td>
+                            <td>2024-05-20</td>
+                            <td><button class="button-small">Detail</button></td>
+                        </tr>
+                        <tr>
+                            <td>TRX002</td>
+                            <td>KIP</td>
+                            <td>Rp 5.000.000</td>
+                            <td class="type-outflow">Pengeluaran</td>
+                            <td>2024-05-18</td>
+                            <td><button class="button-small">Detail</button></td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

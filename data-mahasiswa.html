@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Mahasiswa SIM-KIP</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h3>SIM - KIP</h3>
+        <a href="index.html">Dashboard</a>
+        <a href="rekapitulasi.html">Rekapitulasi</a>
+        <a href="data-mahasiswa.html" class="active">Data Mahasiswa</a>
+        <a href="keuangan.html">Keuangan</a>
+        <a href="login.html">Logout</a>
+    </div>
+
+    <main class="main-content">
+        <div class="header-main">
+            <div class="header-left">
+                <span class="admin-label">admin</span>
+            </div>
+            <div class="header-right">
+                <div class="header-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="user-profile-toggle" id="userProfileToggle">
+                    <img src="https://via.placeholder.com/35" alt="Avatar" class="user-avatar">
+                    <span class="username">Alparijii</span>
+                    <i class="fas fa-caret-down caret-icon"></i>
+                </div>
+                <div id="profileDropdown" class="profile-dropdown">
+                    <a href="profile-settings.html">Pengaturan Profil</a>
+                    <a href="help.html">Bantuan</a>
+                    <a href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h2>Data Mahasiswa</h2>
+            <p>Kelola data mahasiswa KIP.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>Input Data Mahasiswa</h3>
+            <form id="addMahasiswaForm" class="form-section">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nim">NIM</label>
+                        <input type="text" id="nim" name="nim" placeholder="Masukkan NIM" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input type="text" id="nama" name="nama" placeholder="Masukkan Nama Lengkap" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select id="jenis_kelamin" name="jenis_kelamin" required>
+                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tempat_tgl_lahir">Tempat, Tgl Lahir</label>
+                        <input type="text" id="tempat_tgl_lahir" name="tempat_tgl_lahir" placeholder="Contoh: Jakarta, 01-01-2000" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="agama">Agama</label>
+                        <input type="text" id="agama" name="agama" placeholder="Masukkan Agama" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_ibu">Nama Ibu</label>
+                        <input type="text" id="nama_ibu" name="nama_ibu" placeholder="Masukkan Nama Ibu Kandung" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="no_hp_ortu">No. HP Orang Tua</label>
+                        <input type="tel" id="no_hp_ortu" name="no_hp_ortu" placeholder="Contoh: 081234567890" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email_ortu">Email Orang Tua</label>
+                        <input type="email" id="email_ortu" name="email_ortu" placeholder="Contoh: email@contoh.com" />
+                    </div>
+                </div>
+                <button type="submit" class="button-primary">Tambahkan Mahasiswa</button>
+                <div class="message" id="addMahasiswaMessage"></div>
+            </form>
+        </div>
+
+        <div class="section-container">
+            <h3>Daftar Mahasiswa Terdaftar</h3>
+            <div class="table-actions">
+                <input type="text" id="searchMahasiswa" placeholder="Cari mahasiswa...">
+                <button class="button-primary"><i class="fas fa-filter"></i> Filter</button>
+            </div>
+            <div class="table-container">
+
+                    <tbody id="mahasiswaTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

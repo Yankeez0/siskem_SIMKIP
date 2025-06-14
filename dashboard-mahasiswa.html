@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Mahasiswa - SIM-KIP</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="sidebar" id="mahasiswaSidebar">
+        <h3>SIM - KIP</h3>
+        <a href="dashboard-mahasiswa.html" class="active">Dashboard Saya</a>
+        <a href="ajukan-perubahan-data.html">Ajukan Perubahan Data</a> <a
+            href="profile-settings-mahasiswa.html">Pengaturan Profil</a>
+        <a href="login.html" id="mahasiswaLogout">Logout</a>
+    </div>
+
+    <main class="main-content">
+        <div class="header-main">
+            <div class="header-left">
+                <span class="user-role-label">Mahasiswa</span>
+            </div>
+            <div class="header-right">
+                <div class="header-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="user-profile-toggle" id="userProfileToggle">
+                    <img src="https://via.placeholder.com/35" alt="User Avatar" />
+                    <span id="loggedInUserName">Pengguna</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-menu" id="userProfileDropdown">
+                    <a href="profile-settings-mahasiswa.html" id="profileSettingsLinkDropdown">Pengaturan Profil</a>
+                    <a href="help.html">Bantuan</a>
+                    <a href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h2>Dashboard Saya</h2>
+            <p>Selamat datang kembali, <span id="welcomeUserName">Mahasiswa!</span></p>
+        </div>
+
+        <div class="section-container">
+            <h3>Informasi Pribadi</h3>
+            <div class="profile-info-display">
+                <div class="info-group">
+                    <label>NIM:</label>
+                    <span id="displayNIM"></span>
+                </div>
+                <div class="info-group">
+                    <label>Nama Lengkap:</label>
+                    <span id="displayNama"></span>
+                </div>
+                <div class="info-group">
+                    <label>Jenis Kelamin:</label>
+                    <span id="displayJenisKelamin"></span>
+                </div>
+                <div class="info-group">
+                    <label>Tempat, Tanggal Lahir:</label>
+                    <span id="displayTempatTglLahir"></span>
+                </div>
+                <div class="info-group">
+                    <label>Agama:</label>
+                    <span id="displayAgama"></span>
+                </div>
+                <div class="info-group">
+                    <label>Nama Ibu Kandung:</label>
+                    <span id="displayNamaIbu"></span>
+                </div>
+                <div class="info-group">
+                    <label>No. HP Orang Tua:</label>
+                    <span id="displayNoHpOrtu"></span>
+                </div>
+                <div class="info-group">
+                    <label>Email Orang Tua:</label>
+                    <span id="displayEmailOrtu"></span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="button-primary" onclick="location.href='profile-settings-mahasiswa.html'">
+                    <i class="fas fa-edit"></i> Edit Data
+                </button>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>Status KIP Anda</h3>
+            <div class="status-display">
+                <div class="info-group">
+                    <label>Status KIP:</label>
+                    <span id="displayStatusKIP" class="status-badge"></span>
+                </div>
+                <div class="info-group">
+                    <label>Periode Aktif:</label>
+                    <span id="displayPeriodeAktif">Belum Ditetapkan</span>
+                </div>
+                <p class="status-note" id="statusKIPNote">
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            checkUserRole(['mahasiswa']); // Hanya mahasiswa yang bisa mengakses halaman ini
+            const welcomeUserName = document.getElementById('welcomeUserName');
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (welcomeUserName && loggedInUser) {
+                welcomeUserName.textContent = loggedInUser + '!';
+            }
+        });
+    </script>
+</body>
+
+</html>
